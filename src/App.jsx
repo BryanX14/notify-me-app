@@ -1,16 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [notes, setNotes] = useState([]);
+
+  function addNote() {
+    const id = Date.now().toString();
+    setNotes(prev => [...prev, { id, title: `Untitled ${prev.length + 1}` }]);
+  }
 
   return (
-    <>
-     
-    </>
-  )
+    <div>
+      <h1>Notify Me</h1>
+      <button onClick={addNote}>New Note</button>
+      <ul>{notes.map(n => <li key={n.id}>{n.title}</li>)}</ul>
+    </div>
+  );
 }
-
-export default App
