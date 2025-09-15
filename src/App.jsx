@@ -13,7 +13,8 @@ export default function App() {
       <h1>Notify Me</h1>
       <button onClick={addNote}>New Note</button>
       <ul>{notes.map(n => <li key={n.id}>
-        <strong>{n.title}</strong>
+          <input value={n.title} onChange={(e) => setNotes((prev) => prev.map((note) => note.id === n.id ? { ...note, title: e.target.value } : note))}>
+          </input>
         <textarea
         value={n.body}
         onChange={(e) => setNotes((prev) =>
